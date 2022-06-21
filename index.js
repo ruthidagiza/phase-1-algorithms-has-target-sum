@@ -1,20 +1,36 @@
 function hasTargetSum(array, target) {
-  // Write your algorithm here
+  const seenNumbers = {};
+
+  for (const number of array) {
+    // n steps
+    const complement = target - number;
+    if (complement in seenNumbers) return true;
+    seenNumbers[number] = true;
+  }
+
+  return false;
 }
 
-/* 
-  Write the Big O time complexity of your function here
-*/
 
-/* 
-  Add your pseudocode here
+function findSock(array) {
+  for (const item of array) {
+    if (item === "sock") return "sock";
+  }
+}
+
+// O(1) runtime
+function findSock(object) {
+  if (object.sock) return "sock";
+}
+/*
+  Write the Big O time complexity of your function here
 */
 
 /*
   Add written explanation of your solution here
 */
 
-// You can run `node index.js` to view these console logs
+
 if (require.main === module) {
   // add your own custom tests in here
   console.log("Expecting: true");
@@ -29,6 +45,16 @@ if (require.main === module) {
 
   console.log("Expecting: false");
   console.log("=>", hasTargetSum([1, 2, 5], 4));
+
+  console.log("");
+
+  console.log("Expecting: false");
+  console.log("=>", hasTargetSum([4], 4));
+
+  console.log("");
+
+  console.log("Expecting: true");
+  console.log("=>", hasTargetSum([-1, 2, 7, 4], 6));
 }
 
 module.exports = hasTargetSum;
